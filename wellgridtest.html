@@ -32,7 +32,8 @@
 	    .append('g')
 	    .attr('transform', function(d, i) {
 	        return 'translate(0, ' + 100 * i + ')';
-	    });
+	    })
+	    .attr("id", function(d, i) { return 'row'+i;});
 
 	// For each group, create a set of rectangles and bind 
 	// them to the inner array (the inner array is already
@@ -45,6 +46,7 @@
 	        .attr('width', rw)
 	        .attr('height', rh)
 	        .attr("fill", "red")
+	        .attr("id", function(i) { return 'col'+i;})
 </script>
 
 <footer style = "text-align : center">
