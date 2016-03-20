@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Well Grid Test3</title>
+	<title>Well Grid Test</title>
 <script src="https://d3js.org/d3.v2.min.js" charset="utf-8"></script>
 
 </head>
 <body>
-
-<div id="chart"></div>
+<h1 align="center">Simple Well Grid</h1>
+<div id="chart" align="center"></div>
 
 <script type="text/javascript">
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 3; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+function refreshChart (){
 	var width = 500
-    height = 500
+    height = 300 
     div = d3.select('#chart'),
     svg = div.append('svg')
         .attr('width', width)
@@ -20,7 +30,7 @@
     rh = 95;
 
 	var data = [];
-	for (var k = 0; k < 5; k += 1) {
+	for (var k = 0; k < 2; k += 1) {
 	    data.push(d3.range(5));
 	}
 
@@ -45,12 +55,44 @@
 	        .attr('x', function(d, i) { return 100 * i; })
 	        .attr('width', rw)
 	        .attr('height', rh)
-	        .attr("fill", "red")
+	        .attr("fill", "green")
 	        .attr("id", function(i) { return 'col'+i;})
+	        .text ("hello");
+
+
+	        //alert("hello");
+	        //setTimeout(refreshChart,3000);
+}
+
+function changecolour(row, col, color){
+	var i = Math.round(Math.random() * 5)
+	if (Math.random()>0.5) {
+		var x = document.getElementById('col' + i);
+		x.setAttribute("fill","yellow");
+	}
+	else if (Math.random() <0.1) {
+		var x = document.getElementById('col' + i);
+		x.setAttribute("fill","green");
+	}
+	else{
+		var x = document.getElementById('col' + i);
+		x.setAttribute("fill","red");
+	}
+	setTimeout(changecolour,2000);
+// set the attribute to a different colour
+
+
+//set time out on function - see if it updaates
+}
+refreshChart();
+changecolour();
+//changecolour(0,1,"green");
+//changecolour(0,4,"yellow");
 </script>
 
+
 <footer style = "text-align : center">
-	James Todd - 19/03/2016
+	James Todd - 19/03/2016 - Built using d3.js
 
 </footer>
 </body>
